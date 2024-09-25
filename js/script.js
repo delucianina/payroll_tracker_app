@@ -1,71 +1,137 @@
 // Get a reference to the #add-employees-btn element
 const addEmployeesBtn = document.querySelector('#add-employees-btn');
+// const randomEmployee = document.querySelector('#rand-employee-btn');
 
 // STEP ONE:
 // Collect employee data:
-const employees = [];
+const employeesArray = [];
 let whileLoopSwitch;
 
-const employeesArray = function () {
-  // TODO: Get user input to create and return an array of employee objects 
-  whileLoopSwitch = true; 
 
+
+
+
+const collectEmployees = function() {
+  // TODO: Get user input to create and return an array of employee objects 
+  let firstName;
+  let lastName;
+  let salary;
+  // WHILE LOOP TO ASK FOR EMPLOYEE INFO
+  whileLoopSwitch = true; 
   while (whileLoopSwitch) {
     // COLLECT EMPLOYEE INFO
-    const firstName = prompt('Type employee first name:');
-    const lastName = prompt('Type employee last name:');
-    const salary = prompt('Type employee salary:'); 
-    // IF NOTHING IS INPUT, SET: salary = 0 
+    firstName = prompt('Type employee first name:');
+    lastName = prompt('Type employee last name:');
+    salary = prompt('Type employee salary:'); 
 
-    // COPILOT SUGGESTS: 
-    const employee = {
+    if (!firstName || !lastName) {
+      alert('You must provide both first and last names');
+      // continue will re-run the while loop
+      continue;
+    } 
+
+    // TODO:  IF NOTHING IS INPUT, SET: salary = 0 
+    if (isNaN(salary) || salary === '') {
+      salary = 0;
+    };
+    // CREATE NEW OBJECT TO ADD TO THE ARRAY OF EMPLOYEES 
+    const employeeObj = {
       firstName: firstName,
       lastName: lastName,
-      salary: salary,
-    };
-    employees.push(employee);
-
-
+      salary: parseInt(salary),
+    }
+    // ADD TO ARRAY 
+    employeesArray.push(employeeObj);
+    // -----------------------------
+    // TEST - ALL OF THIS WORKED! :) 
+    // console.log(employeeObj.firstName);
+    // console.log("----");
+    // console.log(employeesArray);
+    // console.log("----");
+    // -----------------------------
+    // ASK IF THEY WOULD LIKE TO ENTER ANOTHER EMPLOYEE
     whileLoopSwitch = confirm('Would you like to add another employee?');
   }
-  // COPILOT ALSO SUGGESTS: 
-  return employees;
+  // RETURN THE UPDATED STRING
+  return employeesArray;
 }
 
-console.log(employees);
+
+
+// -----------------------------
+// TEST - WORKED! :)
+// console.log(employeesArray);
+// -----------------------------
+
+
+
 // MAKE THE NEW EMPLOYEE BUTTON FUNCTIONAL 
-addEmployeesBtn.addEventListener('click', employeesArray);
+// addEmployeesBtn.addEventListener('click', employeesArray);
+
+
 
 // -------------------------------------------------------
 // -------------------------------------------------------
-// STOPPED HERE 
+// STOPPED HERE on 9-23
 // -------------------------------------------------------
 // -------------------------------------------------------
+
+
+
 
 
 // Display the average salary
 const displayAverageSalary = function(employeesArray) {
   // TODO: Calculate and display the average salary
+  // USE A FOR LOOP TO COLLECT ALL SALARIES INTO A STRING
+  // USE ANOTHER FOR LOOP TO ADD ALL THE SALARIES INTO ONE VARIABLE
+  //for (const noteObj of notesArray) 
 }
 
+
+
+
+
+
+
+// // Select a random employee
+// const getRandomEmployee = function(employeesArray) {
+//   // TODO: Select and display a random employee
+// }
+
+
+
+
+
+
+// WORKING
 // Select a random employee
 const getRandomEmployee = function(employeesArray) {
   // TODO: Select and display a random employee
+  const randNum = Math.random();
+  const index = Math.floor(randNum * employeesArray.length);
+  const randEmployeeInfo = employeesArray[index];
+  console.log(employeesArray);
+  console.log(`Congratulations to ${randEmployeeInfo.firstName} ${randEmployeeInfo.lastName} our random drawing winner!`);
+  return randEmployeeInfo;
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
   ====================
-  ====================
-  ====================
-  ====================
-  ====================
-  ====================
-  ====================
   STARTER CODE
-  ====================
-  ====================
-  ====================
-  Do not modify any of the code below this line: 
+  Do not modify any of the code below this line:
 */
 
 // Display employee data in an HTML table
@@ -102,6 +168,9 @@ const displayEmployees = function(employeesArray) {
     employeeTable.append(newTableRow);
   }
 }
+
+
+
 
 const trackEmployeeData = function() {
   const employees = collectEmployees();
