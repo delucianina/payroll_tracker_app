@@ -38,7 +38,8 @@ const collectEmployees = function() {
     const employeeObj = {
       firstName: firstName,
       lastName: lastName,
-      salary: parseInt(salary),
+      // parseInt is converting to number with 2 decimals! Need this later on too
+      salary: parseFloat(salary),
     }
     // ADD TO ARRAY 
     employeesArray.push(employeeObj);
@@ -58,69 +59,41 @@ const collectEmployees = function() {
 
 
 
-// -----------------------------
-// TEST - WORKED! :)
-// console.log(employeesArray);
-// -----------------------------
-
-
-
-// MAKE THE NEW EMPLOYEE BUTTON FUNCTIONAL 
-// addEmployeesBtn.addEventListener('click', employeesArray);
-
-
-
-// -------------------------------------------------------
-// -------------------------------------------------------
-// STOPPED HERE on 9-23
-// -------------------------------------------------------
-// -------------------------------------------------------
-
-
 
 
 
 // Display the average salary
 const displayAverageSalary = function(employeesArray) {
   // TODO: Calculate and display the average salary
+  let total = 0;
   // USE A FOR LOOP TO COLLECT ALL SALARIES INTO A STRING
   // USE ANOTHER FOR LOOP TO ADD ALL THE SALARIES INTO ONE VARIABLE
-  //for (const noteObj of notesArray) 
-}
+  for (const employeeObj of employeesArray) {
+    total = Math.round(total + parseFloat(employeeObj.salary));
+  } 
+
+  const averageSalary = (total / employeesArray.length).toFixed(2);
+  console.log("The average employee salary between our " + employeesArray.length + " employee(s) is $" + averageSalary);
+} 
 
 
 
 
 
+// WORKS BUT DOESN'T PASS INSPECTION FOR GRADE?? 
+// ALSO WANTS ME TO MAKE 2 OBJECTS... TRY CREATING A NEW OBJECT OUT OF THE RANDOM SELECTION? 
 
-
-// // Select a random employee
-// const getRandomEmployee = function(employeesArray) {
-//   // TODO: Select and display a random employee
-// }
-
-
-
-
-
-
-// WORKING
 // Select a random employee
 const getRandomEmployee = function(employeesArray) {
   // TODO: Select and display a random employee
+  // CREATE RANDOM NUMBER WITHIN ARRAY LENGTH 
   const randNum = Math.random();
   const index = Math.floor(randNum * employeesArray.length);
   const randEmployeeInfo = employeesArray[index];
   console.log(employeesArray);
-  console.log(`Congratulations to ${randEmployeeInfo.firstName} ${randEmployeeInfo.lastName} our random drawing winner!`);
+  console.log(`Congratulations to ${randEmployeeInfo.firstName} ${randEmployeeInfo.lastName}, our random drawing winner!`);
   return randEmployeeInfo;
 }
-
-
-
-
-
-
 
 
 
