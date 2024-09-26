@@ -4,14 +4,10 @@ const addEmployeesBtn = document.querySelector('#add-employees-btn');
 
 // STEP ONE:
 // Collect employee data:
-const employeesArray = [];
-let whileLoopSwitch;
-
-
-
-
 
 const collectEmployees = function() {
+  const employeesArray = [];
+  let whileLoopSwitch;
   // TODO: Get user input to create and return an array of employee objects 
   let firstName;
   let lastName;
@@ -69,7 +65,7 @@ const displayAverageSalary = function(employeesArray) {
   // USE A FOR LOOP TO COLLECT ALL SALARIES INTO A STRING
   // USE ANOTHER FOR LOOP TO ADD ALL THE SALARIES INTO ONE VARIABLE
   for (const employeeObj of employeesArray) {
-    total = Math.round(total + parseFloat(employeeObj.salary));
+    total += parseFloat(employeeObj.salary);
   } 
 
   const averageSalary = (total / employeesArray.length).toFixed(2);
